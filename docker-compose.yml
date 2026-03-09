@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  gitea:
+    image: gitea/gitea:latest
+    container_name: blackroad-gitea
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - GITEA__database__DB_TYPE=sqlite3
+      - GITEA__server__DOMAIN=gitea.blackroad.io
+      - GITEA__server__ROOT_URL=https://gitea.blackroad.io/
+      - GITEA__server__HTTP_PORT=3100
+      - GITEA__service__DISABLE_REGISTRATION=false
+      - GITEA__service__REQUIRE_SIGNIN_VIEW=false
+      - GITEA__webhook__ALLOWED_HOST_LIST=*
+      - GITEA__api__ENABLE_SWAGGER=true
+      - GITEA__repository__DEFAULT_BRANCH=main
+      - GITEA__ui__DEFAULT_THEME=gitea-dark
+      - GITEA__admin__DEFAULT_EMAIL_NOTIFICATIONS=disabled
+    volumes:
+      - gitea-data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "3100:3100"
+      - "2222:22"
+    restart: always
+
+volumes:
+  gitea-data:
