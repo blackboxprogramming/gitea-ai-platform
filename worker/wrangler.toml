@@ -1,18 +1,13 @@
 name = "gitea-ai-platform"
 main = "src/index.ts"
 compatibility_date = "2024-12-01"
-workers_dev = true
 
 [vars]
-GITEA_URL = "https://gitea.blackroad.io"
+GITEA_URL = "https://git.blackroad.io"
 
 [[kv_namespaces]]
 binding = "DEPLOY_LOG"
-id = "e92c0397f4444f88a455629830bc842d"
+id = "placeholder"
 
 [ai]
 binding = "AI"
-
-[[routes]]
-pattern = "platform.blackroad.io"
-custom_domain = true
